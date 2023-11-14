@@ -16,7 +16,12 @@ gmailButton.addEventListener('click' , () => {
 
 
 
+const childBlock = document.querySelector('.child_block')
 
+
+
+let positionX = 0
+let positionY = 0
 const moveChildBlock = () => {
     if (positionX < 449 && positionY === 0) {
         positionX++
@@ -34,12 +39,6 @@ const moveChildBlock = () => {
 
     setTimeout(moveChildBlock, 10)
 }
-
-// Инициализация начальных значений
-let positionX = 0
-let positionY = 0
-
-const childBlock = document.querySelector('.child_block')
 
 moveChildBlock()
 
