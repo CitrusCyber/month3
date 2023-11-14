@@ -17,18 +17,58 @@ gmailButton.addEventListener('click' , () => {
 
 
 
-function moveBlock(block,targetX,currentX){
-    if(currentX < targetX){
-        currentX += 1
-        block.style.left = `${currentX}px`
-
-        if (currentX < targetX){
-            setTimeout(() => moveBlock(block , targetX,currentX), 16  )
-        }
+const moveChildBlock = () => {
+    if (positionX < 449 && positionY === 0) {
+        positionX++
+        childBlock.style.left = `${positionX}px`
+    } else if (positionX === 449 && positionY < 448) {
+        positionY++
+        childBlock.style.top = `${positionY}px`
+    } else if (positionX > 0 && positionY === 448) {
+        positionX--
+        childBlock.style.left = `${positionX}px`
+    } else if (positionX === 0 && positionY > 0) {
+        positionY--
+        childBlock.style.top = `${positionY}px`
     }
+
+    setTimeout(moveChildBlock, 10)
 }
 
-const childBlock = document.querySelector('.child_block')
-const targetX = document.querySelector('.parent_block').clientWidth - childBlock.offsetWidth
+// Инициализация начальных значений
+let positionX = 0
+let positionY = 0
 
-moveBlock(childBlock, targetX, 0)
+const childBlock = document.querySelector('.child_block')
+
+moveChildBlock()
+
+
+const startButton = document.querySelector('#start')
+const stopButton = document.querySelector('#stop')
+const resetButton = document.querySelector('#reset')
+const  second = document.querySelector('#ml-secondsS')
+let num = 0
+let stopExecution = false
+let intervalID
+startButton.addEventListener('click' , () => {
+    stopExecution = false
+    clearInterval(intervalID)
+
+    intervalID = setInterval(() => {
+        num++
+        second.innerHTML = num
+    }, 1000)
+})
+
+stopButton.addEventListener('click', () => {
+    stopExecution = true
+    clearInterval(intervalID)
+})
+
+
+resetButton.addEventListener('click', () => {
+    num = 0
+    second.innerHTML = num
+    stopExecution = true
+})

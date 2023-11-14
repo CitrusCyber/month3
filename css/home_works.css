@@ -52,10 +52,9 @@
 .child_block {
     position: absolute;
     top: 0;
-    width: 60px;
-    height: 60px;
-    border: 5px dashed red;
-    transition: left 1s ease;
+    width: 50px;
+    height: 50px;
+    background-color: red;
 }
 
 @keyframes rotate {
@@ -184,7 +183,7 @@
 .time_block {
     display: flex;
     width: 500px;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .stopwatch {
