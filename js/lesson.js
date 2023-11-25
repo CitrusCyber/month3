@@ -63,3 +63,78 @@ tabsParent.onclick = (event) => {
         intervalId = setInterval(switchTab,3000)
     }
 }
+
+
+
+// CONVERTER
+
+const somInput = document.querySelector('#som')
+const USDInput = document.querySelector('#usd')
+const euroInput = document.querySelector('#eur')
+
+
+const converter = (element , targetElement, type) => {
+    element.oninput = () => {
+        const request = new XMLHttpRequest()
+        request.open('GET','../data/converter.json')
+        request.setRequestHeader('Content-type','application/json')
+        request.send()
+
+        request.onload = () => {
+            const  changes = JSON.parse(request.response)
+            switch(type) {
+                case 'som':
+                    targetElement.value = (element.value / changes.usd).toFixed(2)
+                    euroInput.value = (element.value / changes.euro).toFixed(2)
+                    break
+                case 'usd':
+                    targetElement.value = (element.value * changes.usd).toFixed(2)
+                    euroInput.value = (element.value * changes.usd / changes.euro).toFixed(2)
+                    break
+                case 'euro':
+                    targetElement.value = (element.value * changes.euro).toFixed(2)
+                    USDInput.value = (element.value * changes.euro / changes.usd).toFixed(2)
+                    break
+                default:
+                    targetElement.value = ''
+                    USDInput.value = ''
+                    euroInput.value = ''
+                    break
+            }
+            element.value === '' && (targetElement.value = '' , USDInput.value = '' , euroInput.value = '')
+        }
+    }
+}
+
+converter(somInput , USDInput , "som")
+converter(USDInput, somInput, 'usd')
+converter(euroInput, somInput, 'euro')
+
+///CARD SWITCHER
+
+const card = document.querySelector('.card'),
+    btnPrev = document.querySelector('#btn-prev')
+    btnNext = document.querySelector('#btn-next')
+
+let count = 198
+
+btnNext.onclick = () =>{
+    count++
+    fetchData(count)
+}
+
+btnPrev.onclick = () =>{
+    count--
+    fetchData(count)
+}
+
+function fetchData(count){
+    fetch('https://jsonplaceholder.typicode.com/todos/'+ count)
+        .then(response => response.json())
+        .then(data =>{
+            card.innerHTML = `
+            <p>${data.title}</p>
+            <span style="color: ${data.completed ? "green" : "red"}">${data.completed}</span>
+            <span>${data.id}</span>`
+        })
+}
