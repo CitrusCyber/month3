@@ -128,13 +128,29 @@ btnPrev.onclick = () =>{
     fetchData(count)
 }
 
-function fetchData(count){
-    fetch('https://jsonplaceholder.typicode.com/todos/'+ count)
+function fetchData(count) {
+    count = (count + 199) % 200 + 1
+
+    fetch('https://jsonplaceholder.typicode.com/todos/' + count)
         .then(response => response.json())
-        .then(data =>{
-            card.innerHTML = `
-            <p>${data.title}</p>
-            <span style="color: ${data.completed ? "green" : "red"}">${data.completed}</span>
-            <span>${data.id}</span>`
+        .then(data => {
+            displayDataOnCard(data)
         })
 }
+
+function displayDataOnCard(data) {
+    card.innerHTML = `
+        <p>${data.title}</p>
+        <span style="color: ${data.completed ? "green" : "red"}">${data.completed}</span>
+        <span>${data.id}</span>`
+
+    fetch('https://jsonplaceholder.typicode.com/posts')
+        .then(response => response.json())
+        .then(postsData => {
+            console.log(postsData)
+        })
+}
+fetchData(count)
+
+
+
