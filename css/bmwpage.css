@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: url("https://www.hdcarwallpapers.com/walls/bmw_m4_led_headlights-HD.jpg")
+
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    background-color: #0f479b;
+}
+
+header, footer {
+    background-color: #333;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 1em;
+}
+
+.card {
+    width: 300px;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 200px;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+

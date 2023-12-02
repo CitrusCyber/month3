@@ -30,7 +30,7 @@
     background: var(--orange);
     padding: 8px;
     color: white;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
 }
 
@@ -74,7 +74,7 @@
 /* FOOTER */
 
 .footer {
-    background: #2c2d2f;
+    background: black;
     width: 100%;
 }
 
@@ -83,6 +83,7 @@
     align-items: center;
     justify-content: center;
     height: 100px;
+    background: url("https://images.alphacoders.com/527/527845.jpg") center/cover no-repeat;
 }
 
 .footer h2 {
@@ -110,6 +111,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
+    background: url("https://3dnews.ru/assets/external/illustrations/2023/04/18/1085270/bmw-i7-m70-xdriv_04.jpg") center/cover no-repeat;
 }
 
 .slide {
